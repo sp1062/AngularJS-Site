@@ -1,0 +1,33 @@
+<section class="blurBg-false" id="checkout">
+
+    <button class="address_button" slide-toggle="#openAddressCheckout">Choose Shipping Addresses</button>
+    <div id="openAddressCheckout" class="slideable">
+        <div class="large"><select style="width: 100%" ng-model="address_options"
+                                   ng-options="address_options as combine_address(address_options) for address_options in address_list">
+
+        </select><span class="icon-place"></span>
+
+        </div>
+    </div>
+
+    <button class="address_button" slide-toggle="#openCardCheckout">Choose Stored Card</button>
+
+    <div id="openCardCheckout" class="slideable">
+        <div class="large"><select style="width: 100%" ng-model="card_options"
+                                   ng-options="card_options as combine_card(card_options) for card_options in card_list">
+
+        </select><span class="icon-place"></span>
+
+        </div>
+    </div>
+
+
+
+    <p ng-if="!valid_checkout()"><a class="btn btn-lg btn-danger" style="margin-top: 1em; float: right;">{{get_message()}}<span class="glyphicon glyphicon-remove"></span></a>
+    </p>
+
+
+    <p ng-if="valid_checkout()"><a class="btn btn-lg btn-success" style="margin-top: 1em; float: right;" ng-click="checkout_process()">{{get_message()}}<span class="glyphicon glyphicon-ok"></span></a>
+    </p>
+
+</section>

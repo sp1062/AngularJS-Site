@@ -1,0 +1,57 @@
+<section id="browse-page">
+
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+
+    <p>Feel free to browse through various products below.</p>
+
+    <!--  Products Container  -->
+        <div class="list-group">
+        <!--  Product Container  Which shows normal product in fruits -->
+        <div class="list-group-item" ng-repeat="fruits in products" ng-init="product.isHidden=true">
+            <h3>
+                {{fruits.names[0]}}
+                <!-- button to show div when clicked & button to hide div when clicked-->
+                <button ng-click="ShowHide(product)" class="browseButton" style="position: absolute; top: 25px; right: 25px;">More</button>
+            </h3>
+
+            <!-- Main Image Gallery  -->
+            <div class="gallery">
+                <img ng-src="images/{{fruits.images[0]}}" />
+            </div>
+
+            <!-- hidden Products Container  (Loop through names in fruits.names)-->
+    <div class="list-group" ng-hide="product.isHidden" ng-repeat="names in fruits.names" ng-if="$index != 0">
+        <!--  hidden Product Container  -->
+        <div class="list-group-item">
+            <h3>
+                {{names}}
+                <!-- Buy button only if logged off (Shows tooltip)-->
+                <em ng-if="storage.user.loggedIn == false" class="pull-right" title="Please sign in to buy a product!" data-toggle="tooltip" data-placement="top" tooltip><button class="browseButton">Buy</button></em>
+
+                <!-- Buy button If logged in-->
+                <em ng-if="storage.user.loggedIn == true" class="pull-right" ng-click='
+                addFruitToCart({
+                  "name": names,
+                  "price": fruits.prices[$index],
+                  "amount": 1,
+                  "delivery": fruits.delivery[$index],
+                  "image": fruits.images[$index],
+                  "desc": fruits.description[$index],
+            })'><button class="browseButton">Buy</button></em>
+
+            </h3>
+            <img ng-src="images/{{fruits.images[$index]}}" />
+   			<p>Description: {{fruits.description[$index]}}</p>
+			<p>Delivery Price: {{fruits.delivery[$index] | currency}}</p>
+			<p>Price: {{fruits.prices[$index] | currency}}</p>
+        </div>
+    </div>
+
+        </div>
+    </div>
+    <!--      <em class="button"><button>More</button></em>   old button -->
+</section>

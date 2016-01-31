@@ -1,0 +1,49 @@
+{
+	"items": [
+		{
+			"id": "home",
+			"title": "Home",
+			"link": "home"
+		},
+		{
+			"id": "protected",
+			"title": "My account",
+			"link": "protected",
+			"private": true
+		},
+	    {
+		    "id": "browse",
+		    "title": "Browse",
+		    "link": "browse"
+	    },
+		{
+			"id": "cart",
+			"title": "Cart",
+			"link": "cart",
+			"private": true
+		},
+		{
+			"id": "contact",
+			"title": "Contact",
+			"link": "contact"
+		},
+		{
+			"id": "login",
+			"title": "Login",
+			"link": "login",
+			"hideWhenLoggedIn": true
+		},
+		{
+			"id": "register",
+			"title": "Register",
+			"link": "register",
+			"hideWhenLoggedIn": true
+		},
+		{
+			"id": "logout",
+			"title": "Logout",
+			"link": "logout",
+			"private": true
+		}
+	]
+}

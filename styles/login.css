@@ -1,0 +1,9 @@
+/* Login page CSS */
+
+#login-page * {
+	color: rgba(136, 92, 92, 0.83);
+}
+
+#login-page form input, #login-page form button {
+	display: block;
+}

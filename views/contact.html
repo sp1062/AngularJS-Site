@@ -1,0 +1,64 @@
+<section id="contact-page">
+
+
+    <p class="lead">
+        <img src="images/question.png" alt="Ask Us!!" align="centre"><br>
+        Here at Crazy Fruits, we love to hear from our supporters. To place an inquiry, suggestion, complaint, or simply just to say "hello" to us, please fill in the fields below and we shall get back to you as soon as we can.
+    </p>
+
+	<br>
+
+    <form name="contactForm" novalidate>
+
+        <!-- username input field min 5 characters, max 10 characters required-->
+        <label for="name">Name:</label><br>
+        <input type="text" data-ng-model="contact.name" name="name" id="name"  ng-minlength="5" ng-maxlength="10" placeholder="Enter Your Name Here..." required>
+
+
+        <label for="email">Email:</label><br>
+        <input type="email" data-ng-model="contact.email" name="email" id="email"  placeholder="Someone@somewhere.com" required>
+
+
+       <label for="message">Message:</label><br>
+        <textarea name="message" id="message" data-ng-model="contact.message" rows="10" placeholder="Enter Your Message Here..." required></textarea>
+
+        <br>
+        <button ng-disabled="contactForm.$invalid" type="submit">Submit</button>
+        <br>
+
+        <div data-ng-messages="contactForm.name.$dirty && contactForm.name.$error">
+            <p data-ng-message="required">You must supply your name!</p>
+        </div>
+
+        <div data-ng-messages="contactForm.name.$dirty && contactForm.name.$error">
+            <p data-ng-message="minlength">Your name is too short!</p>
+        </div>
+
+        <div data-ng-messages="contactForm.name.$dirty && contactForm.name.$error">
+            <p data-ng-message="maxlength">Your name is too long!</p>
+        </div>
+
+        <div data-ng-messages="contactForm.email.$dirty && contactForm.email.$error">
+            <p data-ng-message="required">You must supply an email address!</p>
+        </div>
+
+        <div><p ng-show="contactForm.email.$dirty && contactForm.email.$invalid">Email not correct syntax!
+        </div>
+
+        <div><p ng-show="contactForm.email.$dirty && contactForm.email.$error.email">Email does not exist!
+        </div>
+
+        <div data-ng-messages="contactForm.message.$dirty && contactForm.message.$error">
+            <p data-ng-message="required">Blank messages cannot be set!</p>
+        </div>
+
+    </form>
+
+    <!-- display message when success-->
+    <div ng-messages="contactForm.$valid" ng-if="contactForm.$submitted && contactForm.$valid">
+        <span class="sent">Your message has been sent!</span>
+    </div>
+
+
+
+</section>

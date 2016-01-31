@@ -1,0 +1,9 @@
+/* About page CSS */
+
+#about-page * {
+
+}
+
+#about-page .user-name {
+	color: rgba(136, 92, 92, 0.83);
+}

@@ -1,0 +1,34 @@
+<section id="cart">
+    <h1>My Cart</h1>
+    <!-- Loops through the fruits in the item list and displays information accordingly-->
+    <div class="list-group-item" ng-repeat="fruits in itemList">
+            <h3>
+                {{fruits.name}}
+
+            </h3>
+            <img style="float:left" ng-src="images/{{fruits.image}}" />
+            <p>Description: {{fruits.desc}}</p>
+            <p>Delivery Price: {{fruits.delivery}}</p>
+            <p>Price: {{fruits.price | currency}}</p>
+            <p>Amount: {{fruits.amount}}</p>
+
+            <!-- button to remove the fruit -->
+            <button ng-click="removeItem(fruits)" class="smallButton" style="position: initial;">Remove Item</button></em>
+        </div>
+
+    <!-- Calculates the cost and totals of products -->
+    <div class="list-group-item">
+          <div>
+              <!-- If cart is not empty -->
+              <p style="clear:left" ng-if="!isEmpty()">Item Cost: {{getItemTotal() | currency}} </p>
+              <p ng-if="!isEmpty()">Delivery Cost: {{getDeliveryTotal() | currency}}</p>
+              <p ng-if="!isEmpty()">Subtotal: {{getSubTotal() | currency}}</p>
+              <button ng-if="!isEmpty()" onclick="location.href='#/checkout';" class="smallButton" style="top: 72px;">Next Step</button></em>
+
+              <!-- If the cart is empty -->
+              <h1 ng-if="isEmpty()">Opps! You have an empty cart!</h1>
+          </div>
+        </div>
+
+
+</section>

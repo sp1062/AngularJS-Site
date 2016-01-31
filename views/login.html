@@ -1,0 +1,21 @@
+<section id="login-page">
+	<h3>Login</h3>
+	<br>
+
+	<!-- Form to get username & Password ; button=disabled until required fields are filled in-->
+	<form name="loginForm" novalidate>
+		<label for="username">Username:</label><input type="text" id="username" data-ng-model="login.username" required/>
+		<label for="password">Password:</label><input type="password" id="password" data-ng-model="login.password" ng-paste="$event.preventDefault()" required/>
+		<br><button ng-disabled="loginForm.$invalid" type="submit" ng-click="submit()">Login</button>
+	</form>
+
+	<h4>No account? <a href="#/register">Register here!</a></h4>
+
+	<!-- Displaying the Array using ng-repeat -->
+	<h3>User Table</h3>
+	<ul>
+		<li ng-repeat="(username, password) in myUsers">
+			<a>{{ username }} - {{ password }}</a>
+		</li>
+	</ul>
+</section>

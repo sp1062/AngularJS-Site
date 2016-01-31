@@ -1,0 +1,180 @@
+<section class="blurBg-false" id="protected">
+    <!-- Use the directive slide-toggle to open up the slide  -->
+    <button class="address_button" slide-toggle="#openAddress">My Shipping Addresses</button>
+    <div id="openAddress" class="slideable">
+        <!-- Start address_form where the submission leads to submit()-->
+        <form name="address_form" class="formoid-solid-green"
+              style="background-color:rgba(251, 234, 216, 0.43);font-size:14px;font-family:'Roboto',Arial,Helvetica,sans-serif;color:#000000;width: 100%"
+              ng-submit="submit()">
+
+            <div class="element-multiple"><label class="title"></label>
+
+                <div class="item-cont">
+                    <!-- The current option is binded to address_options and item.address_name is shown inside the option placeholder-->
+                    <div class="large"><select ng-model="address_options"
+                                               ng-options="item.address_name for item in address_list">
+
+                    </select><span class="icon-place"></span>
+                    </div>
+
+                    <div id="detail_open" class="element-name"><label class="title"><span
+                            class="required"></span></label><span
+                            class="element-address"><input ng-model="address_name"
+                                                           placeholder="{{address_options.address_name}}" type="text"
+                                                           name="name[first]"
+                                                           required="required"/><span class="icon-place"></span></span>
+                    </div>
+
+                    <div class="element-name"><label class="title"><span class="required"></span></label><span
+                            class="nameFirst"><input ng-model="first_name" placeholder="{{address_options.first_name}}"
+                                                     type="text" size="8" name="name[first]"
+                                                     required="required"/><span class="icon-place"></span></span><span
+                            class="nameLast"><input ng-model="last_name" placeholder="{{address_options.last_name}}"
+                                                    type="text" size="14" name="name[last]"
+                                                    required="required"/><span class="icon-place"></span></span></div>
+
+
+                    <div class="element-address"><label class="title"></label><span class="addr1"><input
+                            ng-model="addr1" placeholder="{{address_options.addr1}}" type="text" name="address[addr1]"
+                            required="required"/><span
+                            class="icon-place"></span></span><span class="addr2"><input ng-model="addr2"
+                                                                                        placeholder="{{address_options.addr2}}"
+                                                                                        type="text"
+                                                                                        name="address[addr2]"/><span
+                            class="icon-place"></span></span><span class="city"><input ng-model="city"
+                                                                                       placeholder="{{address_options.city}}"
+                                                                                       type="text"
+                                                                                       name="address[city]"
+                                                                                       required="required"/><span
+                            class="icon-place"></span></span>
+                    <span
+                            class="icon-place"></span></span><span class="zip"><input ng-model="zip"
+                                                                                      placeholder="{{address_options.zip}}"
+                                                                                      type="text"
+                                                                                      maxlength="15" name="address[zip]"
+                                                                                      required="required"/><span
+                                class="icon-place"></span></span>
+
+                    </div>
+
+                    <!-- submit() buttons-->
+                    <div class="submit">
+                        <!-- If address index is 0 then Show add button otherwise do not show add button-->
+                        <input ng-if="get_address_index(address_options) == 0"
+                               ng-click="set_selected_address(address_options)" type="submit" value="Add"/>
+
+                        <!-- Do not validate fields if removing or changing item. If address index is greater than 0 then show remove and change button-->
+                        <input formnovalidate ng-if="get_address_index(address_options) > 0"
+                               ng-click="remove(address_options)" type="submit" value="Remove"/>
+                        <input formnovalidate ng-if="get_address_index(address_options) > 0"
+                               ng-click="modify(address_options)" type="submit" value="Change"/>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <!-- Stop Formoid form-->
+
+    <!-- Start of card form using a button which triggers a slideable-->
+    <button class="address_button" slide-toggle="#open1">My Payment method</button>
+    <!-- cardForm slideable-->
+    <div id="open1" class="slideable">
+        <form class="formoid-solid-green"
+              style="background-color:rgba(251, 234, 216, 0.43);font-size:14px;font-family:'Roboto',Arial,Helvetica,sans-serif;color:#000000;width: 100%"
+              ng-submit="submit_card()"
+              name="cardForm"
+              data-card
+              data-width="500"
+              data-card-container="#card-container"
+              data-placeholders="cardPlaceholders"
+              data-options="cardOptions"
+              data-messages="cardMessages"
+        >
+
+            <div class="element-multiple"><label class="title"></label>
+
+                <div class="large"><select ng-model="card_options" ng-change="update_card(card_options)" ng-options="item.card_name for item in card_list">
+
+                </select><span class="icon-place"></span>
+                </div>
+                <div class="item-cont">
+
+                    <div class="element-address">
+                         <span class="nameFirst"><input placeholder="{{card_options.card_name}}" type="text" name="card_name"
+                                                        data-ng-model="card_name" required="required"/><span
+                                 class="icon-place"></span></span>
+
+                        <span class="nameFirst"><input placeholder="{{card_options.name}}" value="{{card_options.name}}" type="text" name="CardName" card-name
+                                                       data-ng-model="name" required="required"/><span
+                                class="icon-place"></span></span>
+
+                    <span class="zip"><input placeholder="{{card_options.number}}" value="{{card_options.name}}" type="text" name="CardNumber" card-number
+                                             data-ng-model="number" required="required"/><span
+                            class="icon-place"></span></span>
+
+                        <span class="zip"><input placeholder="{{card_options.expiry}}" value="{{card_options.expiry}}" type="text" name="CardExpiry" card-expiry
+                                                 data-ng-model="expiry" required="required"/><span
+                                class="icon-place"></span></span>
+
+                        <span class="zip"><input placeholder="{{card_options.cvc}}"  value="{{card_options.cvc}}" type="text" name="CardCvc" card-cvc
+                                                 data-ng-model="cvc" required="required"/><span
+                                class="icon-place"></span></span>
+
+                        <!-- submit_card buttons-->
+                        <div class="submit">
+                            <!-- If card_options is first option add the "Add" button -->
+                            <input ng-if="get_card_index(card_options) == 0" ng-click="set_selected_card(card_options)"
+                                   type="submit" value="Add"/>
+
+                            <!-- If card_options is not the first option add the "Remove" and "Change" button -->
+                            <input formnovalidate ng-if="get_card_index(card_options) > 0"
+                                   ng-click="remove_card(card_options)" type="submit" value="Remove"/>
+                            <input formnovalidate ng-if="get_card_index(card_options) > 0"
+                                   ng-click="modify_card(card_options)" type="submit" value="Change"/>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </form>
+
+        <!-- Main Card Image external source see app.js -->
+        <div class="container" style="padding-top: 5em; margin-bottom: 8.5em;">
+            <div id="card-container"></div>
+
+        </div>
+    </div>
+
+    <button class="address_button" slide-toggle="#openOrder">My Orders</button>
+    <div id="openOrder" class="slideable">
+        <div class="list-group-item" ng-repeat="orders in order_list" style="padding: 4px 15px;">
+            <h3>
+                Order Id: {{order_list.indexOf(orders)+1}}
+            </h3>
+
+            <p> Shipping Address: {{combine_address(orders.address)}}</p>
+            <p>Paid by {{orders.payment_method.name}}</p>
+
+            <div ng-repeat="fruits in orders.order_items">
+                <img style="clear:left" ng-src="images/{{fruits.image}}" />
+                <p>Description: {{fruits.desc}}</p>
+                <p>Delivery Price: {{fruits.delivery}}</p>
+                <p>Price: {{fruits.price | currency}}</p>
+                <p>Amount: {{fruits.amount}}</p>
+            </div>
+
+            <!-- Calculates the cost and totals of products -->
+            <div class="list-group-item">
+                <div>
+                    <p style="clear:left" ng-if="!isEmpty()">Item Cost: {{orders.item_total | currency}} </p>
+                    <p ng-if="!isEmpty()">Delivery Cost: {{orders.delivery_total | currency}}</p>
+                    <p ng-if="!isEmpty()">Subtotal: {{orders.sub_total | currency}}</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

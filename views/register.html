@@ -1,0 +1,60 @@
+<section id="register-page">
+	<h3>Registration</h3>
+	<br>
+	<!-- Form to get username & Password -->
+	<form name="registerForm" novalidate>
+
+		<!-- username input field min 5 characters, max 10 characters required-->
+		<label for="username">Username:</label><input type="text" data-ng-model="register.username" name="username" id="username" required ng-minlength="5" ng-maxlength="20b">
+
+
+		<label for="email">Email:</label><input type="email" data-ng-model="register.email" name="email" id="email" required>
+
+
+		<label for="password">Password:</label><input type="password" data-ng-model="register.password" name="password" id="password" required ng-minlength="5" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
+
+
+		<label for="passwordConfirm">Confirm:</label><input type="password" data-ng-model="register.passwordConfirm" name="passwordConfirm" id="passwordConfirm" data-ng-pattern="(register.password)" required ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()">
+
+
+		<br>
+		<button ng-disabled="registerForm.$invalid" type="submit" ng-click="submit()">Register</button>
+		<br>
+
+		<div data-ng-messages="registerForm.username.$dirty && registerForm.username.$error">
+			<p data-ng-message="required">You must supply your username!</p>
+		</div>
+
+        <div data-ng-messages="registerForm.username.$dirty && registerForm.username.$error">
+            <p data-ng-message="minlength">Your username is too short!</p>
+        </div>
+
+        <div data-ng-messages="registerForm.username.$dirty && registerForm.username.$error">
+            <p data-ng-message="maxlength">Your username is too long!</p>
+        </div>
+
+		<div data-ng-messages="registerForm.email.$dirty && registerForm.email.$error">
+			<p data-ng-message="required">You must supply an email address!</p>
+		</div>
+
+        <div><p ng-show="registerForm.email.$dirty && registerForm.email.$invalid">Email not correct syntax!
+        </div>
+
+        <div><p ng-show="registerForm.email.$dirty && registerForm.email.$error.email">Email does not exist!
+        </div>
+
+		<div data-ng-messages="registerForm.password.$dirty && registerForm.password.$error">
+			<p data-ng-message="required">You must choose a password!</p>
+		</div>
+
+        <div data-ng-messages="registerForm.password.$dirty && registerForm.password.$error">
+            <p data-ng-message="minlength">Password is too short!</p>
+        </div>
+
+		<div data-ng-messages="registerForm.password.$dirty && registerForm.passwordConfirm.$error">
+			<p data-ng-message="pattern">The two passwords must match!</p>
+			<p data-ng-message="required">You must re-type the chosen password exactly!</p>
+		</div>
+
+	</form>
+</section>

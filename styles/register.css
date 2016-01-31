@@ -1,0 +1,9 @@
+/* Register page CSS */
+
+#register-page * {
+	color: rgba(136, 92, 92, 0.83);
+}
+
+#register-page form input, #register-page form button {
+	display: block;
+}

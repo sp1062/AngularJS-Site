@@ -1,0 +1,9 @@
+/* Contact page CSS */
+
+#contact-page * {
+	color: rgba(136, 92, 92, 0.83);
+}
+
+#contact-page form input, #contact-page form button {
+	display: block;
+}

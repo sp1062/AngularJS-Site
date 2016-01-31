@@ -1,0 +1,33 @@
+<!-- START Don't touch this! When screen is too narrow to display the full menu, this button will show up that will toggle the menu, leave untouched START -->
+<div class="navbar-header">
+	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+	</button>
+	<a class="navbar-brand" href="#/home">GmFruits</a>
+</div>
+<!-- END Don't touch this! When screen is too narrow to display the full menu, this button will show up that will toggle the menu, leave untouched END -->
+
+<!-- START Don't touch this here! This is the main navigation menu of your app, automagically generated, feel free to customise it to match your needs by editing /scripts/controllers/navigation.js START -->
+<div class="collapse navbar-collapse" id="js-navbar-collapse">
+	<ul class="nav navbar-nav">
+		<!-- START items can be found in /scripts/controllers/navigation.js inside the controller, along with item.id, item.link, item.title START -->
+		<!-- Note: data-ng-if will completely REMOVE the element it's attached to (<li> in this case) IF the JavaScript expression it contains EVALUATES to FALSE ==> so, TRUE will leave the element as it -->
+		<li data-ng-repeat="item in items" data-ng-class="{ 'active': item.id == states.activeItem }" data-ng-click="states.activeItem=item.id" data-ng-if="!($storage.user.loggedIn === false && !!item.private === true || $storage.user.loggedIn && !!item.hideWhenLoggedIn)">
+			<!-- If the item.title is not equal to Cart then print normal title -->
+			<a ng-if="item.title != 'Cart'" data-ng-href="#/{{ item.link }}">{{ item.title }}</a>
+
+			<!-- If the item.title is equal to cart then print cart number (getCartSize()) next to the title-->
+			<a ng-if="item.title == 'Cart'" data-ng-href="#/{{ item.link }}">{{ item.title }} ({{getCartSize()}})</a>
+		</li>
+		<!-- START something to make the user feel at home... START -->
+		<li data-ng-if="$storage.user.loggedIn">
+			<a id="welcome-message">Hello, {{ $storage.user.name }}!</a>
+		</li>
+		<!-- END something to make the user feel at home... END -->
+		<!-- END items can be found in /scripts/controllers/navigation.js inside the controller, along with item.id, item.link, item.title, and the rest END -->
+	</ul>
+</div>
+<!-- END Don't touch this here! This is the main navigation menu of your app, automagically generated, feel free to customise it to match your needs by editing /scripts/controllers/navigation.js END -->
